@@ -20,7 +20,7 @@ local function returnids(cb_extra, success, result)
 
    local text = 'IDs for chat '..chatname
       ..' ('..chat_id..')\n'
-      ..'There are '..result.members_num..' members'
+      ..'در این گروه '..result.members_num..' ممبر وجود دارد !'
       ..'\n---------\n'
       i = 0
    for k,v in pairs(result.members) do
@@ -33,11 +33,11 @@ end
 local function username_id(cb_extra, success, result)
    local receiver = cb_extra.receiver
    local qusername = cb_extra.qusername
-   local text = 'User '..qusername..' not found in this group!'
+   local text = 'کاربر '..qusername..' در این گروه یافت نشد !'
    for k,v in pairs(result.members) do
       vusername = v.username
       if vusername == qusername then
-      	text = 'ID for username\n'..vusername..' : '..v.id
+      	text = 'آیدی برای یوزرنیم\n'..vusername..' : '..v.id
       end
    end
    send_large_msg(receiver, text)
@@ -48,7 +48,7 @@ local function run(msg, matches)
    if matches[1] == "!id" then
       local text = 'Name : '.. string.gsub(user_print_name(msg.from),'_', ' ') .. '\nID : ' .. msg.from.id
       if is_chat_msg(msg) then
-         text = text .. "\n\nYou are in group " .. string.gsub(user_print_name(msg.to), '_', ' ') .. " (ID: " .. msg.to.id  .. ")"
+         text = text .. "\n\nشما در این گروه هستید : " .. string.gsub(user_print_name(msg.to), '_', ' ') .. " (آیدی: " .. msg.to.id  .. ")"
       end
       return text
    elseif matches[1] == "chat" then
