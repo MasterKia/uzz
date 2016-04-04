@@ -157,7 +157,7 @@ local function username_id(cb_extra, success, result)
    local mod_cmd = cb_extra.mod_cmd
    local receiver = cb_extra.receiver
    local member = cb_extra.member
-   local text = 'No user @'..member..' in this group.'
+   local text = 'کاربر @'..member..' در این گروه یافت نشد !'
    for k,v in pairs(result.members) do
       vusername = v.username
       if vusername == member then
@@ -180,13 +180,13 @@ end
 local function modlist(msg)
     local data = load_data(_config.moderation.data)
   if not data[tostring(msg.to.id)] then
-    return 'Group is not added.'
+    return 'گروه ادد نشده است !'
   end
   -- determine if table is empty
   if next(data[tostring(msg.to.id)]['moderators']) == nil then --fix way
-    return 'No moderator in this group.'
+    return 'هیچکس در این گروه مدیر نیست !'
   end
-  local message = 'List of moderators for ' .. string.gsub(msg.to.print_name, '_', ' ') .. ':\n'
+  local message = 'مدیران گروه ' .. string.gsub(msg.to.print_name, '_', ' ') .. ' : \n'
   for k,v in pairs(data[tostring(msg.to.id)]['moderators']) do
     message = message .. '- '..v..' [' ..k.. '] \n'
   end
