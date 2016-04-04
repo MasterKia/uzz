@@ -59,7 +59,7 @@ local function modadd(msg)
     end
     local data = load_data(_config.moderation.data)
   if data[tostring(msg.to.id)] then
-    return 'گروه از قبل ادد شده است !
+    return 'گروه از قبل ادد شده است !'
     -- create data array in moderation.json
   data[tostring(msg.to.id)] = {
       moderators ={},
