@@ -48,19 +48,18 @@ local function automodadd(msg)
               }
           }
       save_data(_config.moderation.data, data)
-      return 'Group has been added, and @'..username..' has been promoted as moderator for this group.'
+      return 'گروه ادد شد و @'..username..' به عنوان مدیر گروه انتخاب شد !'
    end
 end
 
 local function modadd(msg)
     -- superuser and admins only (because sudo are always has privilege)
     if not is_admin(msg) then
-        return "You're not admin"
+        return "شما ادمین نیستید !"
     end
     local data = load_data(_config.moderation.data)
   if data[tostring(msg.to.id)] then
-    return 'Group is already added.'
-  end
+    return 'گروه از قبل ادد شده است !
     -- create data array in moderation.json
   data[tostring(msg.to.id)] = {
       moderators ={},
@@ -73,7 +72,7 @@ local function modadd(msg)
       }
   save_data(_config.moderation.data, data)
 
-  return 'Group has been added.'
+  return 'گروه ادد شد !'
 end
 
 local function modrem(msg)
