@@ -117,7 +117,7 @@ local function demote(receiver, member_username, member_id)
   end
   data[group]['moderators'][tostring(member_id)] = nil
   save_data(_config.moderation.data, data)
-  return send_large_msg(receiver, '@'..member_username..' has been demoted.')
+  return send_large_msg(receiver, 'کاربر @'..member_username..' از مدیریت برکنار شد !')
 end
 
 local function admin_promote(receiver, member_username, member_id)  
@@ -133,7 +133,7 @@ local function admin_promote(receiver, member_username, member_id)
   
   data['admins'][tostring(member_id)] = member_username
   save_data(_config.moderation.data, data)
-  return send_large_msg(receiver, '@'..member_username..' has been promoted as admin.')
+  return send_large_msg(receiver, 'کاربر @'..member_username..' ادمین شد !')
 end
 
 local function admin_demote(receiver, member_username, member_id)
@@ -150,7 +150,7 @@ local function admin_demote(receiver, member_username, member_id)
   data['admins'][tostring(member_id)] = nil
   save_data(_config.moderation.data, data)
 
-  return send_large_msg(receiver, 'Admin '..member_username..' has been demoted.')
+  return send_large_msg(receiver, 'کاربر '..member_username..' از ادمینی برکنار شد !')
 end
 
 local function username_id(cb_extra, success, result)
