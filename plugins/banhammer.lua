@@ -61,7 +61,7 @@ local function pre_process(msg)
       local superbanned = is_super_banned(user_id)
       local banned = is_banned(user_id, msg.to.id)
       if superbanned or banned then
-        print('User is banned!')
+        print('کاربر بن میباشد !')
         kick_user(user_id, msg.to.id)
       end
     end
@@ -128,7 +128,7 @@ local function username_id(cb_extra, success, result)
    local receiver = cb_extra.receiver
    local chat_id = cb_extra.chat_id
    local member = cb_extra.member
-   local text = 'No user @'..member..' in this group.'
+   local text = 'کاربر @'..member..' در این گروه پیدا نشد !'
    for k,v in pairs(result.members) do
       vusername = v.username
       if vusername == member then
@@ -137,10 +137,10 @@ local function username_id(cb_extra, success, result)
       	if get_cmd == 'kick' then
       	    return kick_user(member_id, chat_id)
       	elseif get_cmd == 'ban user' then
-      	    send_large_msg(receiver, 'User @'..member..' ['..member_id..'] banned')
+      	    send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] بن شد !')
       	    return ban_user(member_id, chat_id)
       	elseif get_cmd == 'superban user' then
-      	    send_large_msg(receiver, 'User @'..member..' ['..member_id..'] globally banned!')
+      	    send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] گلوبال بن شد !')
       	    return superban_user(member_id, chat_id)
       	elseif get_cmd == 'whitelist user' then
       	    local hash = 'whitelist:user#id'..member_id
@@ -201,7 +201,7 @@ local function run(msg, matches)
     if matches[2] == 'user' then
         if string.match(matches[3], '^%d+$') then
             superban_user(user_id, chat_id)
-            send_large_msg(receiver, 'User '..user_id..' globally banned!')
+            send_large_msg(receiver, 'کاربر '..user_id..' بن گلوبال شد !')
         else
             local member = string.gsub(matches[3], '@', '')
             chat_info(receiver, username_id, {get_cmd=get_cmd, receiver=receiver, chat_id=chat_id, member=member})
