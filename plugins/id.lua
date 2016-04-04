@@ -46,7 +46,7 @@ end
 local function run(msg, matches)
    local receiver = get_receiver(msg)
    if matches[1] == "!id" then
-      local text = 'Name : '.. string.gsub(user_print_name(msg.from),'_', ' ') .. '\nID : ' .. msg.from.id
+      local text = 'نام : '.. string.gsub(user_print_name(msg.from),'_', ' ') .. '\nآیدی : ' .. msg.from.id
       if is_chat_msg(msg) then
          text = text .. "\n\nشما در این گروه هستید : " .. string.gsub(user_print_name(msg.to), '_', ' ') .. " (آیدی: " .. msg.to.id  .. ")"
       end
@@ -58,14 +58,14 @@ local function run(msg, matches)
          chat_info(chat, returnids, {receiver=receiver})
       else
          if not is_chat_msg(msg) then
-            return "You are not in a group."
+            return "شما در گروه نیستید !"
          end
          local chat = get_receiver(msg)
          chat_info(chat, returnids, {receiver=receiver})
       end
    else
    	if not is_chat_msg(msg) then
-   		return "Only works in group"
+   		return "تنها در گروه کار میکند !"
    	end
    	local qusername = string.gsub(matches[1], "@", "")
    	local chat = get_receiver(msg)
